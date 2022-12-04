@@ -2,7 +2,7 @@ use array_tool::vec::Intersect;
 use std::fs::File;
 use std::io::{self, BufRead};
 
-fn part_1() -> u32 {
+fn part_1() -> i32 {
     let mut score = 0;
     if let Ok(file) = File::open("../rucksack.txt") {
         let lines = io::BufReader::new(file).lines();
@@ -15,14 +15,14 @@ fn part_1() -> u32 {
                 .collect::<Vec<_>>()
                 .intersect(right.chars().collect::<Vec<_>>());
 
-            let item = intersection[0] as u32;
+            let item = intersection[0] as i32;
             acc + if item > 90 { item - 96 } else { item - 38 }
         });
     }
     score
 }
 
-fn find_badge(rucksacks: &[String]) -> u32 {
+fn find_badge(rucksacks: &[String]) -> i32 {
     let first = &rucksacks[0];
     let second = &rucksacks[1];
     let third = &rucksacks[2];
@@ -31,7 +31,7 @@ fn find_badge(rucksacks: &[String]) -> u32 {
         .collect::<Vec<_>>()
         .intersect(second.chars().collect::<Vec<_>>())
         .intersect(third.chars().collect::<Vec<_>>());
-    let item = intersection[0] as u32;
+    let item = intersection[0] as i32;
     if item > 90 {
         item - 96
     } else {
@@ -39,7 +39,7 @@ fn find_badge(rucksacks: &[String]) -> u32 {
     }
 }
 
-fn part_2() -> u32 {
+fn part_2() -> i32 {
     let mut badges = 0;
     if let Ok(file) = File::open("../rucksack.txt") {
         let lines = io::BufReader::new(file).lines();
