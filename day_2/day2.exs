@@ -23,23 +23,14 @@ File.read!('rps.txt')
 |> Enum.reduce(0, fn turn, acc ->
   [g, h] =
     %{
-      # Scissors
       "A X" => [0, 3],
-      # Paper
       "A Z" => [6, 2],
-      # Rock
       "A Y" => [3, 1],
-      # Rock
       "B X" => [0, 1],
-      # Scissors
       "B Z" => [6, 3],
-      # Paper
       "B Y" => [3, 2],
-      # Paper
       "C X" => [0, 2],
-      # Rock
       "C Z" => [6, 1],
-      # Scissors
       "C Y" => [3, 3]
     }[turn]
 
