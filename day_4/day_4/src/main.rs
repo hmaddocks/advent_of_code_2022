@@ -21,21 +21,19 @@ impl Section {
 }
 
 fn convert_to_section(line: String) -> (Section, Section) {
-    let pairs: Vec<&str> = line.split(",").collect();
-    let left: Vec<&str> = pairs[0].split("-").collect();
-    let right: Vec<&str> = pairs[1].split("-").collect();
-    let left_start = left[0].parse().unwrap();
-    let left_end = left[1].parse().unwrap();
-    let right_start = right[0].parse().unwrap();
-    let right_end = right[1].parse().unwrap();
+    let pairs: Vec<Vec<i32>> = line
+        .split(',')
+        .map(|x| x.split('-').map(|x| x.parse().unwrap()).collect())
+        .collect();
+
     (
         Section {
-            start: left_start,
-            end: left_end,
+            start: pairs[0][0],
+            end: pairs[0][1],
         },
         Section {
-            start: right_start,
-            end: right_end,
+            start: pairs[1][0],
+            end: pairs[1][1],
         },
     )
 }
@@ -43,10 +41,7 @@ fn convert_to_section(line: String) -> (Section, Section) {
 fn main() {
     if let Ok(file) = File::open("../cleanup.txt") {
         let lines = io::BufReader::new(file).lines();
-        let sections: Vec<(Section, Section)> = lines
-            .flatten()
-            .map(|line| convert_to_section(line))
-            .collect();
+        let sections: Vec<(Section, Section)> = lines.flatten().map(convert_to_section).collect();
 
         let covers = sections.iter().fold(0, |acc, sections| {
             if sections.0.covers(&sections.1) || sections.1.covers(&sections.0) {
