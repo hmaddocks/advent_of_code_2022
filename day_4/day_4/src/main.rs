@@ -8,7 +8,7 @@ struct Section {
 
 impl Section {
     pub fn overlaps(&self, other: &Section) -> bool {
-        other.start == self.start || self.contains(other.start) || self.contains(other.start)
+        other.start == self.start || self.contains(other.start) || other.contains(self.start)
     }
 
     pub fn covers(&self, other: &Section) -> bool {
