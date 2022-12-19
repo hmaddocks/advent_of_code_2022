@@ -15,8 +15,12 @@ fn part_1() -> i32 {
                 .collect::<Vec<_>>()
                 .intersect(right.chars().collect::<Vec<_>>());
 
-            let item = intersection[0] as i32;
-            acc + if item > 90 { item - 96 } else { item - 38 }
+            let item = intersection[0];
+            acc + match item {
+                'A'..='Z' => item as i32 - 38,
+                'a'..='z' => item as i32 - 96,
+                _ => panic!(),
+            }
         });
     }
     score
@@ -31,11 +35,11 @@ fn find_badge(rucksacks: &[String]) -> i32 {
         .collect::<Vec<_>>()
         .intersect(second.chars().collect::<Vec<_>>())
         .intersect(third.chars().collect::<Vec<_>>());
-    let item = intersection[0] as i32;
-    if item > 90 {
-        item - 96
-    } else {
-        item - 38
+    let item = intersection[0];
+    match item {
+        'A'..='Z' => item as i32 - 38,
+        'a'..='z' => item as i32 - 96,
+        _ => panic!(),
     }
 }
 
