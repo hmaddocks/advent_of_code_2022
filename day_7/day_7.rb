@@ -49,7 +49,6 @@ def sizes(input)
       path_head.times do |i|
         sizes[current_path[i]] += file_size
       end
-      p sizes
     end
   end
   sizes
