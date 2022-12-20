@@ -42,19 +42,3 @@ Day2.part_1()
 
 Day2.part_2()
 |> IO.inspect()
-
-# badges = File.readlines('rucksack.txt', chomp: true)
-# 						 .each_slice(3)
-# 						 .collect do |a, b, c|
-# 	(a.chars & b.chars & c.chars).first
-# end
-#
-# priority = badges.reduce(0) do |acc, badge|
-# 	acc + if badge.ord > 90
-# 					badge.ord - 96
-# 				else
-# 					badge.ord - 38
-# 				end
-# end
-#
-# p priority
