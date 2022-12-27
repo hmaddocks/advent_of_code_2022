@@ -43,22 +43,16 @@ fn main() {
         let lines = io::BufReader::new(file).lines();
         let sections: Vec<(Section, Section)> = lines.flatten().map(convert_to_section).collect();
 
-        let covers = sections.iter().fold(0, |acc, sections| {
-            if sections.0.covers(&sections.1) || sections.1.covers(&sections.0) {
-                acc + 1
-            } else {
-                acc
-            }
-        });
+        let covers = sections
+            .iter()
+            .filter(|(left, right)| left.covers(right) || right.covers(left))
+            .count();
         dbg!(covers);
 
-        let overlaps = sections.iter().fold(0, |acc, sections| {
-            if sections.0.overlaps(&sections.1) || sections.1.overlaps(&sections.0) {
-                acc + 1
-            } else {
-                acc
-            }
-        });
+        let overlaps = sections
+            .iter()
+            .filter(|(left, right)| left.overlaps(right))
+            .count();
         dbg!(overlaps);
     }
 }

@@ -2,8 +2,7 @@ def convert_to_ranges(lines)
   lines.collect do |line|
     line.split(',')
         .map { |pair| pair.split('-') }
-        .map { |b, e| [b.to_i, e.to_i] }
-        .map { |r| Range.new(*r) }
+        .map { |b, e| Range.new(b.to_i, e.to_i) }
   end
 end
 

@@ -1,34 +1,36 @@
 defmodule Day4 do
-  def overlaps(left, right) do
+  def overlaps([left, right]) do
     right.first == left.first || Enum.member?(left, right.first) ||
       Enum.member?(right, left.first)
   end
 
-  def covers(left, right) do
-    left.first <= right.first && left.last >= right.last
+  def covers([left, right]) do
+    (left.first <= right.first && left.last >= right.last) ||
+      (right.first <= left.first && right.last >= left.last)
+  end
+
+  def convert_to_range([b, e]) do
+    String.to_integer(b)..String.to_integer(e)//1
+  end
+
+  def convert_to_range(line) do
+    line
+    |> String.split(",")
+    |> Enum.map(&String.split(&1, "-"))
+    |> Enum.map(&convert_to_range/1)
   end
 
   def convert_to_ranges(lines) do
     lines
     |> Enum.reject(fn line -> String.length(line) == 0 end)
-    |> Enum.map(fn line ->
-      line
-      |> String.split(",")
-      |> Enum.map(fn pair -> String.split(pair, "-") end)
-      |> Enum.map(fn [b, e] -> [String.to_integer(b), String.to_integer(e)] end)
-      |> Enum.map(fn [b, e] -> b..e//1 end)
-    end)
+    |> Enum.map(&convert_to_range/1)
   end
 
   def part_1 do
-    lines =
-      File.read!("cleanup.txt")
-      |> String.split("\n")
-
-    Day4.convert_to_ranges(lines)
-    |> Enum.filter(fn [left, right] ->
-      Day4.covers(left, right) || Day4.covers(right, left)
-    end)
+    File.read!("cleanup.txt")
+    |> String.split("\n")
+    |> Day4.convert_to_ranges()
+    |> Enum.filter(&covers/1)
     |> Enum.count()
   end
 
@@ -36,9 +38,7 @@ defmodule Day4 do
     File.read!("cleanup.txt")
     |> String.split("\n")
     |> Day4.convert_to_ranges()
-    |> Enum.filter(fn [left, right] ->
-      Day4.overlaps(left, right) || Day4.overlaps(right, left)
-    end)
+    |> Enum.filter(&overlaps/1)
     |> Enum.count()
   end
 end
