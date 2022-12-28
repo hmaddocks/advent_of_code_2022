@@ -73,38 +73,30 @@ end
 
 pp part_one(map, input)
 
-def score(input, tree_height, x, y, debug = false)
+def score(input, tree_height, x, y)
   height = input.length
   width = input[0].length
-  p "tree_height #{tree_height}" if debug
+
   right = 0
-  p "right" if debug
   (x...width - 1).to_a.each do |x|
-    p "#{x + 1}, #{y}" if debug
     right += 1
     break if input[y][x + 1] >= tree_height
   end
 
   left = 0
-  p "left" if debug
   (1..x).to_a.reverse.each do |x|
-    p "#{x - 1}, #{y}" if debug
     left += 1
     break if input[y][x - 1] >= tree_height
   end
 
   down = 0
-  p "down" if debug
   (y...height - 1).to_a.each do |y|
-    p "#{x}, #{y + 1}" if debug
     down += 1
     break if input[y + 1][x] >= tree_height
   end
 
   up = 0
-  p "up" if debug
   (1..y).to_a.reverse.each do |y|
-    p "#{x}, #{y - 1}" if debug
     up += 1
     break if input[y - 1][x] >= tree_height
   end
@@ -113,11 +105,11 @@ def score(input, tree_height, x, y, debug = false)
 end
 
 def part_two(input)
-  input.collect.with_index do |row, y|
+  input.flat_map.with_index do |row, y|
     row.collect.with_index do |tree, x|
       score(input, tree, x, y)
     end
-  end
+  end.max
 end
 
-pp part_two(input).flatten.max
+pp part_two(input)
