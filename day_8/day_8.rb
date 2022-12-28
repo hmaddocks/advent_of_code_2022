@@ -32,9 +32,7 @@ def part_one(map, input)
         map[y][x] = 1
       end
     end
-  end
 
-  (1...height - 1).to_a.each do |y|
     highest = input[y][width - 1]
     (1...width - 1).to_a.reverse.each do |x|
       if input[y][x] > highest
@@ -52,9 +50,7 @@ def part_one(map, input)
         map[y][x] = 1
       end
     end
-  end
 
-  (1...width - 1).to_a.each do |x|
     highest = input[height - 1][x]
     (1...height - 1).to_a.reverse.each do |y|
       if input[y][x] > highest
