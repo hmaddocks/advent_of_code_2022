@@ -12,7 +12,7 @@ fn sizes(input: io::Lines<io::BufReader<File>>) -> Vec<u64> {
     }
 
     for line in input.flatten() {
-        let mut parts = line.split(" ");
+        let mut parts = line.split(' ');
         match parts.next() {
             Some("$") => match parts.next() {
                 Some("ls") => (),
@@ -43,11 +43,11 @@ fn sizes(input: io::Lines<io::BufReader<File>>) -> Vec<u64> {
     sizes
 }
 
-fn part_1(sizes: &Vec<u64>) -> u64 {
+fn part_1(sizes: &[u64]) -> u64 {
     sizes.iter().filter(|s| **s <= 100_000).sum()
 }
 
-fn part_2(sizes: &mut Vec<u64>) -> u64 {
+fn part_2(sizes: &mut [u64]) -> u64 {
     let total_space = 70_000_000;
     let target_space = 30_000_000;
     let free_space = total_space - sizes[0];
