@@ -35,12 +35,12 @@ def sizes(input)
     when /\$ ls/
       next
     when /\$ cd (.+)/
-      if $1 ==  ".."
-        path_head -= 1;
+      if Regexp.last_match(1) == '..'
+        path_head -= 1
       else
-        current_path[path_head] = folder_counter;
-        folder_counter += 1;
-        path_head += 1;
+        current_path[path_head] = folder_counter
+        folder_counter += 1
+        path_head += 1
       end
     when /dir/
       next
@@ -66,7 +66,6 @@ def part_two(sizes)
   sizes.select { |x| x >= target }.sort.first
 end
 
-require 'pp'
 input = File.readlines('input.txt', chomp: true)
 sizes = sizes(input)
 pp part_one(sizes)

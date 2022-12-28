@@ -5,7 +5,7 @@ def build_stacks(stack_map)
   stack_map.collect do |row|
     row.match(/.(.). .(.). .(.). .(.). .(.). .(.). .(.). .(.).? ?.?(.)?.?/).captures
   end.transpose.map do |stack|
-    stack.each.reject { |crate| crate.nil? || crate == ' ' }
+    stack.reject { |crate| crate.nil? || crate == ' ' }
   end
 end
 
