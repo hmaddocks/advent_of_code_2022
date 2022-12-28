@@ -61,8 +61,8 @@ def part_one(map, input)
   end
 
   map.reduce(0) do |acc, row|
-    acc += row.reduce(0) do |acc, tree|
-      acc += tree
+    acc + row.reduce(0) do |acc, tree|
+      acc + tree
     end
   end
 end
