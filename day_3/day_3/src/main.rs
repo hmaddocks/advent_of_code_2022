@@ -19,7 +19,7 @@ fn part_1() -> i32 {
             acc + match item {
                 'A'..='Z' => item as i32 - 38,
                 'a'..='z' => item as i32 - 96,
-                _ => panic!(),
+                _ => unreachable!(),
             }
         });
     }
@@ -39,7 +39,7 @@ fn find_badge(rucksacks: &[String]) -> i32 {
     match item {
         'A'..='Z' => item as i32 - 38,
         'a'..='z' => item as i32 - 96,
-        _ => panic!(),
+        _ => unreachable!(),
     }
 }
 
