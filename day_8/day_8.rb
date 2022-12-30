@@ -1,15 +1,15 @@
-# input = File.readlines('input.txt', chomp: true).collect do |row|
-#   row.chars.map(&:to_i)
-# end
-input = [
-  "30373",
-  "25512",
-  "65332",
-  "33549",
-  "35390"
-].collect do |row|
+input = File.readlines('input.txt', chomp: true).collect do |row|
   row.chars.map(&:to_i)
 end
+# input = %w[
+#   30373
+#   25512
+#   65332
+#   33549
+#   35390
+# ].collect do |row|
+#   row.chars.map(&:to_i)
+# end
 
 height = input.length
 width = input[0].length

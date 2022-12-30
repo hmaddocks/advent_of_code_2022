@@ -1,29 +1,3 @@
-# input = [
-#   "$ cd /",
-#   "$ ls",
-#   "dir a",
-#   "14848514 b.txt",
-#   "8504156 c.dat",
-#   "dir d",
-#   "$ cd a",
-#   "$ ls",
-#   "dir e",
-#   "29116 f",
-#   "2557 g",
-#   "62596 h.lst",
-#   "$ cd e",
-#   "$ ls",
-#   "584 i",
-#   "$ cd ..",
-#   "$ cd ..",
-#   "$ cd d",
-#   "$ ls",
-#   "4060174 j",
-#   "8033020 d.log",
-#   "5626152 d.ext",
-#   "7214296 k"
-# ]
-
 def sizes(input)
   sizes = Array.new(200, 0)
   current_path = Array.new(100, 0)
@@ -63,7 +37,7 @@ def part_two(sizes)
   target_space = 30_000_000
   free_space = total_space - sizes[0]
   target = target_space - free_space
-  sizes.select { |x| x >= target }.sort.first
+  sizes.select { |x| x >= target }.min
 end
 
 input = File.readlines('input.txt', chomp: true)
