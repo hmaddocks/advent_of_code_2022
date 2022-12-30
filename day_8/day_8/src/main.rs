@@ -51,7 +51,6 @@ fn part_1(input: &Vec<Vec<u8>>) -> u32 {
     let height = input.len();
 
     let mut map = Map::new(width, height);
-    // println!("{}", map);
 
     for y in 1..map.height - 1 {
         let mut highest = input[y][0];
@@ -96,7 +95,6 @@ fn score(input: &Vec<Vec<u8>>, tree_height: u8, x: usize, y: usize) -> u32 {
     if x == 0 || x == width - 1 || y == 0 || y == height - 1 {
         return 0;
     }
-    // println!("{x} {y} {tree_height}");
 
     let mut right = 0;
     for h in x..(width - 1) {
@@ -130,9 +128,6 @@ fn score(input: &Vec<Vec<u8>>, tree_height: u8, x: usize, y: usize) -> u32 {
         }
     }
 
-    // if up != 0 && down != 0 && left != 0 && right != 0 {
-    //     println!("{x} {y} {tree_height} {up} {down} {left} {right}");
-    // }
     up * down * left * right
 }
 
