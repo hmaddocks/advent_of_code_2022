@@ -50,11 +50,9 @@ def apply_movements(visited_cells, movements, head_pos, tail_pos)
   apply_movements(visited_cells, movements, head_pos, tail_pos)
 end
 
-def part_1(input, movements)
-  head_pos = [0, 0]
-  tail_pos = [0, 0]
-  visited_cells = Set[tail_pos]
-  visited_cells = apply_movements(visited_cells, movements, head_pos, tail_pos)
+def part_1(movements)
+  visited_cells = Set[[0, 0]]
+  visited_cells = apply_movements(visited_cells, movements, [0, 0], [0, 0])
   visited_cells.size
 end
 
