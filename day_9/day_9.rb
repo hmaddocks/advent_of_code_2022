@@ -56,4 +56,4 @@ def part_1(movements)
   visited_cells.size
 end
 
-pp part_1(input, movements) # 6197
+pp part_1(movements) # 6197
